@@ -98,7 +98,6 @@ public int buy(int[] shares){
       smallestIdx = i;
     }
   }
-
 }
 
 /*
@@ -207,5 +206,22 @@ public int toInt(char[] s){
   if (negative) return -num;
   else return num;
 }
+
+public int maxSequence(int[] in){
+  int maxSum = 0;
+  int currSum = 0;
+
+  for (int i = 0; i  < in.length; i++){
+    if (in[i] > 0) currSum += in[i];
+    else {
+      if (currSum > maxSum) maxSum = currSum;
+      currSum = 0;
+    }
+  }
+  return maxsum;
+
+}
+
+
 
 

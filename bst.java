@@ -157,4 +157,25 @@ public class BST<Key extends Comparable<Key>> {
     return traversal;
   }
 
+  public boolean isValidBst(BST b){
+    return isValid(b.root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+  }
+
+  private boolean isValid(Node n, int MIN, int MAX){
+    if (n == null) return true;
+
+    if (n.key < min ||
+        n.key > max ||
+        !isValid(n.left, MIN, n.key) ||
+        !isValid(n.right, n.key, MAX)){
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
 }// end BST
+
+
+
+

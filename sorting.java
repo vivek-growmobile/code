@@ -10,7 +10,7 @@ public static int[] countingSort(int[] in){
   int[] indices = new int[in.length];
   int[] sorted = new int[in.length];
 
-  for (int i = 0; i < in.length; i++){
+  for (int i = 0; i < in.length - 1; i++){
     for (int j = i + 1; j < in.length; j++){
       if (in[i] > in[j]) indices[i]++;
       else indices[j]++;
@@ -154,12 +154,31 @@ private static int[] merge(int[] left, int[] right){
       merged[mergedIdx++] = left[leftIdx++];
     }
   }
+
   if (leftIdx < left.length){
     System.arraycopy(left, leftIdx, merged, mergedIdx, left.length - leftIdx);
   }
   else if (rightIdx < right.length){
     System.arraycopy(right, rightIdx, merged, mergedIdx, right.length - rightIdx);
   }
+
   return merged;
 }
 
+public static int[] quickSort(int[] in){
+  int pivot = in.length / 2;
+  ArrayList<Integer> less = new ArrayList<Integer>();
+  ArrayList<Integer> equal = new ArrayList<Integer>();
+  ArrayList<Integer> more = new ArrayList<Integer>();
+
+  for (int i = 0; i < in.length; i++){
+    if (in[i] < pivot) less.add(in[i]);
+    else if (in[i] == pivot) equal.add(in[i]);
+    else (in[i] > pivot) more.add(in[i]);
+  }
+
+  left = quickSort(less);
+  right = quickSort(more);
+
+  return left + equal + right;
+}
